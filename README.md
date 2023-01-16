@@ -18,5 +18,6 @@ Visual Studio 2019 Features : Add Category,Edit/Delete Category,Add Expenses ,Ed
 Download the project using the -> https://github.com/shrutiipatel/Expense_Tracker
 
 Step 1 :Open Sln file in Visual Studio..
-Step 2 : Run _Layout.cshtml file.
+
+
 
