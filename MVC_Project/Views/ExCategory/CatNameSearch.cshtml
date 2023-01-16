@@ -1,0 +1,84 @@
+﻿@model IEnumerable<MVC_Project.Models.ViewModel>
+
+@{
+    ViewBag.Title = "CatNameSearch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Filter Record</h2>
+
+@if (TempData["AlertMsg"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success !</strong>@TempData["AlertMsg"]
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+    </div>
+}
+
+<table class="table table-hover">
+    <tr class="text-capitalize bg-dark text-white text-center">
+        <th>Title</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Category Name</th>
+        <th>Date</th>
+        <th>Expense Limit</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="text-center">
+            <td>@item.expense.Title</td>
+            <td>@item.expense.Description</td>
+            <td>@item.expense.Amount</td>
+            <td>@item.exCategory.Name</td>
+            <td>@item.expense.Date</td>
+            <td>@item.exCategory.Ex_Limit</td>
+            <td>
+                <a href="@Url.Action("EditExpense", new { item.expense.Exp_Id, item.expense.Title, item.expense.Description, item.expense.Amount, item.exCategory.Name, item.expense.Date })" class="btn btn-success">Edit</a>
+                <a href="@Url.Action("DeleteEx", new { @item.expense.Exp_Id })" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<div>&nbsp;</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-5 col-md-5 col-xl-5 col-lg-5">
+            <table class="table table-bordered">
+                <tr class="text-capitalize bg-dark text-white text-center">
+                    <th>Total Amount Is :</th>
+                </tr>
+                <tr class="text-center">
+                    <td>@Model.Sum(h => h.expense.Amount)</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-sm-1 col-md-1 col-xl-1 col-lg-1">
+            
+        </div>
+
+        <div class="col-sm-5 col-md-5 col-xl-5 col-lg-5">
+            @if (TempData["Remain"] != null)
+            {
+                <table class="table table-bordered">
+                    <tr class="text-capitalize bg-dark text-white text-center">
+                        <th>Remain Amount Is :</th>
+                    </tr>
+                    <tr class="text-center">
+                        <td>@TempData["Remain"]</td>
+                    </tr>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+
+
+

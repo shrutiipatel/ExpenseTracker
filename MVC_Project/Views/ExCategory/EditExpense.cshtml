@@ -1,0 +1,60 @@
+﻿@model MVC_Project.Models.Expense
+
+@{
+    ViewBag.Title = "EditExpense";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit-Expense</h2>
+
+<style>
+    .error {
+        color: red;
+    }
+</style>
+
+
+@using (Html.BeginForm("EditExpense", "ExCategory", FormMethod.Post))
+{
+    <div class="container">
+        <div class="form-group">
+            @Html.HiddenFor(h => h.Exp_Id)
+            <label>Title</label>
+            @Html.ValidationMessageFor(h => h.Title, "", new { @class = "error" })
+            @Html.TextBoxFor(h => h.Title, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            @Html.ValidationMessageFor(h => h.Description, "", new { @class = "error" })
+            @Html.TextAreaFor(h => h.Description, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label>Amount</label>
+            @Html.ValidationMessageFor(h => h.Amount, "", new { @class = "error" })
+            @Html.TextBoxFor(h => h.Amount, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label>Category Name</label>
+            @*@Html.ValidationMessageFor(h => h.Id, "", new { @class = "error" })*@
+            @Html.DropDownList("Id", null, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label>Date Time</label>
+            @*@Html.TextBoxFor(h=>h.Date,new { @class="form-control" })*@
+            @*@Html.TextBoxFor(h=>h.Date,new { @class="form-control" })*@
+            @Html.TextBox("Date", DateTime.Now, new { @disabled = "disabled", @class = "form-control redable" })
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+
+    </div>
+}
+
+
+

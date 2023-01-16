@@ -1,0 +1,111 @@
+﻿@using MVC_Project.Models;
+@model MultiViewModel
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Dashboard</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-lg-9 col-md-9 col-xl-9">
+            <table class="table table-bordered">
+                <tr class="text-capitalize bg-dark text-white text-center">
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>CategoryName</th>
+                    <th>Date</th>
+                    @*<th>Action</th>*@
+                </tr>
+
+                @foreach (var item in Model.Expenses)
+                {
+                    <tr class="text-center">
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        <td>@item.Amount</td>
+                        <td>@item.Id</td>
+                        <td>@item.Date</td>
+                        @*<td>
+                                <a href="@Url.Action("EditExpense", new { item.Exp_Id, item.Title, item.Description, item.Amount,item.Id,item.Date })" class="btn btn-success">Edit</a>
+                                <a href="@Url.Action("DeleteEx", new { @item.Exp_Id })" class="btn btn-danger">Delete</a>
+                            </td>*@
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col-sm-3 col-lg-3 col-md-3 col-xl-3">
+            <table class="table table-bordered">
+                <tr class="text-capitalize bg-dark text-white text-center">
+                    <th>CategoryId</th>
+                    <th>ExpanseLimit</th>
+                    @*<th>Action</th>*@
+                </tr>
+
+                @foreach (var item in Model.exCategories)
+                {
+                    <tr class="text-center">
+                        <td>@item.Name</td>
+                        <td>@item.Ex_Limit</td>
+                        @*<td>
+                                <a href="@Url.Action("EditCategory",new { item.Id,item.Name,item.Ex_Limit })" class="btn btn-success">Edit</a>
+                                <a href="@Url.Action("Delete",new { item.Id})" class="btn btn-danger">Delete</a>
+                            </td>*@
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+
+    <div>&nbsp;</div>
+
+    <div class="row">
+        <div class="col-sm-5 col-lg-5 col-md-5 col-xl-5">
+            <table class="table table-bordered">
+                <tr class="text-capitalize bg-dark text-white text-center">
+                    <th>Total Expense Amount Is :</th>
+                    @*<th>Action</th>*@
+                </tr>
+
+
+                <tr class="text-center">
+                    <td><strong>@ViewBag.Exp</strong></td>
+                    @*<td>
+                        <a href="@Url.Action("EditLimit",new { item.Id,item.Total_Limit })" class="btn btn-success">Edit</a>
+                    </td>*@
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-sm-1 col-md-1"></div>
+
+        <div class="col-sm-5 col-lg-5 col-md-5 col-xl-5">
+            <table class="table table-bordered">
+                <tr class="text-capitalize bg-dark text-white text-center">
+                    <th>TotalLimit</th>
+                    @*<th>Action</th>*@
+                </tr>
+
+                @foreach (var item in Model.totalLimits)
+                {
+                    <tr class="text-center">
+                        <td>@item.Total_Limit</td>
+                        @*<td>
+                            <a href="@Url.Action("EditLimit",new { item.Id,item.Total_Limit })" class="btn btn-success">Edit</a>
+                        </td>*@
+                    </tr>
+                }
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

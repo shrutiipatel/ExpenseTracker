@@ -1,0 +1,44 @@
+﻿@model List<MVC_Project.Models.ExCategory>
+
+@{
+    ViewBag.Title = "ListCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Show Category</h2>
+@if (TempData["AlertMsg"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Successfully !</strong>@TempData["AlertMsg"]
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+    </div>
+}
+
+<table class="table table-bordered">
+    <tr class="text-capitalize bg-dark text-white text-center">
+        <th>Category Name</th>
+        <th>Expanse Limit</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="text-center">
+            <td>@Html.ActionLink(item.Name, "CatNameSearch", "ExCategory", new { Id = item.Id }, null)</td>
+            <td>@item.Ex_Limit</td>
+            <td>
+                <a href="@Url.Action("EditCategory",new { item.Id,item.Name,item.Ex_Limit })" class="btn btn-success">Edit</a>
+                <a href="@Url.Action("Delete",new { item.Id})" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
+@if (TempData["Remain"] != null)
+{
+    <div class="card text-center">
+        <strong>Remain Amount Is :</strong>@TempData["Remain"]
+    </div>
+}
